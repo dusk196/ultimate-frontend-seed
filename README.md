@@ -35,29 +35,29 @@ Take clone of this [repository](https://github.com/dusk196/ultimate-js-seed/) fr
 The folder structure is pretty straight forward. The main souce code can be found in the `src` folder with different subfolders to differentiate between file types. The `assets` folder is to contain all the assets (i.e. audio, video, fonts etc.) required for the developement. The `.browserslistrc` is to denote add some browser speciafic CSS prefixes. The `gulpfile.js` is responsible for the automated build generation process. Let's look into this later part of this guide. 
 
 ```
- 📦/
- ┣ 📂dist
- ┣ 📂src
- ┃ ┣ 📂assets
- ┃ ┃ ┗ 📜image.jpg
- ┃ ┣ 📂css
- ┃ ┃ ┣ 📜custom-css-styles1.css
- ┃ ┃ ┗ 📜custom-css-styles2.css
- ┃ ┣ 📂html
- ┃ ┃ ┗ 📜main.html
- ┃ ┣ 📂js
- ┃ ┃ ┣ 📜custom-js-script1.js
- ┃ ┃ ┗ 📜custom-js-script2.js
- ┃ ┣ 📂scss
- ┃ ┃ ┣ 📜custom-scss-styles1.scss
- ┃ ┃ ┗ 📜custom-scss-styles2.scss
- ┃ ┣ 📂ts
- ┃ ┃ ┣ 📜custom-ts-script1.ts
- ┃ ┃ ┗ 📜custom-ts-script2.ts
- ┃ ┗ 📜index.html
- ┗ 📜.browserslistrc
- ┗ 📜gulpfile.js
- ┗ 📜package.json
+ 📦
+ ┣━📂dist
+ ┣━📂src
+ ┃ ┣━📂assets
+ ┃ ┃ ┗━📜image.jpg
+ ┃ ┣━📂css
+ ┃ ┃ ┣━📜custom-css-styles1.css
+ ┃ ┃ ┗━📜custom-css-styles2.css
+ ┃ ┣━📂html
+ ┃ ┃ ┗━📜main.html
+ ┃ ┣━📂js
+ ┃ ┃ ┣━📜custom-js-script1.js
+ ┃ ┃ ┗━📜custom-js-script2.js
+ ┃ ┣━📂scss
+ ┃ ┃ ┣━📜custom-scss-styles1.scss
+ ┃ ┃ ┗━📜custom-scss-styles2.scss
+ ┃ ┣━📂ts
+ ┃ ┃ ┣━📜custom-ts-script1.ts
+ ┃ ┃ ┗━📜custom-ts-script2.ts
+ ┃ ┗━📜index.html
+ ┣━📜.browserslistrc
+ ┣━📜gulpfile.js
+ ┗━📜package.json
 ```
 
 **Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the developement process in any way.
@@ -94,11 +94,11 @@ Task | Command
 `npm run watch` | Builds the entire application in *developement mode*, launches the application in the default browser and monitors the entire source code to build & refresh the browser in real-time if changes are made
 `npm run build` | Builds the entire application in *production mode*; which is available in the `dist` folder thereafter & ready for live deploment
 
-But wherever the NPM commands are executed, it performs clears the output directory `dist` & builds the entire application again. Now there are some `Gulp` tasks available which will execute only a perticular set of things as follows:
+But wherever the NPM commands are executed, it clears the output directory `dist` & builds the entire application again. Now there are some `Gulp` tasks available which will execute only a perticular set of things as follows:
 
 Task | Command
 ---- | -------
-`gulp` | Since no gulp task is mentioned, by default it performs a build of the entire application
+`gulp` | Since no gulp task is mentioned, by default it performs a production build of the entire application
 `gulp build` | Performs a build of the entire application in production mode
 `gulp dev` | Performs a build of the entire application in developement mode
 `gulp watch` | Looks for changes in the entire source code to build & refresh the browser in real-time
@@ -118,12 +118,10 @@ Deploy the contents of `dist` folder
 
 # Limitation
 
-Even the perfect systems got some flaws and this is just a begginer's guide! 😛 
-
-* Source maps
-* Test cases
-* Deleting a file in `assets` folder in real time
-* LESS format
-* Polyfills
+* No source maps
+* No test cases
+* Deleting a file in `assets` folder doesn't reflect in the output folder in real time
+* No support for `.LESS` format yet
+* No polyfills
 
 
