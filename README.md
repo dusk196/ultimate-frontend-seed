@@ -1,6 +1,6 @@
 # Ultimate JS Seed
 
-A simple seed project for beginner's to kickstart the basic frontend developement in no time! Also you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending times on the base architecture & become insanely productive in minutes!
+A simple seed project for beginner's to kickstart the basic frontend development in no time! Also, you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending time on the base architecture & become insanely productive in minutes!
 
 
 # What's Included?
@@ -121,7 +121,7 @@ Deploy the contents of `dist` folder
 * No source maps
 * No test cases
 * Deleting a file in `assets` folder doesn't reflect in the output folder in real time
-* No support for `.LESS` format yet
+* No support for `.LESS` format yet (WIP)
 * No polyfills
 
 
