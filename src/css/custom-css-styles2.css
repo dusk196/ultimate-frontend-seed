@@ -1,0 +1,13 @@
+/**
+  * Just to give you some idea about how the bundle is generated!
+  * Feel free to customise/remove as per your requirements!
+  */
+
+.css-main2 {
+  color: #9BA2FF;
+  font-size: 20px;
+}
+
+.css-main2:hover .highlight {
+  font-weight: bold;
+}
