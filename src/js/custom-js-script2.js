@@ -4,7 +4,7 @@
  */
 
  
- var aReallyLongVariableName = "Hello from custom-js-script2.js!";
+ var againReallyLongVariableName = "Hello from custom-js-script2.js!";
 
 function anotherReallyLongFunctionName() {
     alert(aReallyLongVariableName);

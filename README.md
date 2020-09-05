@@ -3,17 +3,19 @@
 A simple seed project for the beginner's to kickstart the basic frontend development in no time! Also, you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending time on building the architecture & become insanely productive in minutes!
 
 
-# Why Ultimate Frontend Seed?
+# Why?
 
-So let assume you're a beginner in frontend development or you might need some data
+Using only HTML pages with CSS & Javascript can be really boring. Why?
+Because we need to save all the changes in HTML or CSS file & then we have to manually refresh the browser to check the changes; EVERTYTIME! If .SASS or .LESS is used for styling, then we have to compile it first manually & same for Typescript also. And guess what? Those are neither minified, nor bundled like other popular frontend frameworks. That's when the Gulp &  NodeJS  comes to the picture.
 
 
-# What's Included?
+# So what's Included?
 
 * Single file bundle generation for:
   * HTML
   * CSS
   * SCSS
+  * LESS
   * JS
   * TS
 * Minifying, mangling & optimising the bundles
@@ -21,7 +23,7 @@ So let assume you're a beginner in frontend development or you might need some d
 * A small webserver with synchronization for live developement
 
 
-# Prerequisite
+# Prerequisite:
 
 * [Git](https://git-scm.com/) (optional; if you download this package as .zip)
 * [Node.JS](https://nodejs.org/en/)
@@ -30,7 +32,7 @@ Don't know/have those in your system? No worries!
 Just download & install those from the above websites & you're good to go.
 
 
-# Getting the seed package
+# Getting the seed package:
 
 Take clone of this [repository](https://github.com/dusk196/ultimate-frontend-seed/) from the above link or download as a .zip package & extract it.
 
@@ -68,17 +70,17 @@ The folder structure is pretty straight forward. The main souce code can be foun
 **Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the developement process in any way.
 
 
-# Getting started
+# Getting started:
 
-## Dependencies
+## Dependencies:
 
 * [Gulp](https://gulpjs.com/): Perform `npm install -g gulp-cli` in the command prompt/terminal
 
-## Installation
+## Installation:
 
 Go to the root folder of the project & perform `npm install`
 
-## Development
+## Development:
 
 **Note:** All the commands must be executed in the command prompt/terminal of this project.
 
@@ -116,12 +118,12 @@ Task | Command
 `gulp jsdev` | Performs a build of all the `JS` files available (in developement mode); ignores if none
 `gulp tsdev` | Performs a build of all the `TS` files available (in developement mode); ignores if none
 
-## Deployment
+## Deployment:
 
 Deploy the contents of `dist` folder
 
 
-# Limitation
+# Limitation:
 
 * No source maps
 * No test cases

@@ -27,6 +27,7 @@ body {
   font-family: 'Courier New', Courier, monospace;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  user-select: none;
 }
 
 header,
@@ -59,6 +60,7 @@ img {
   cursor: pointer;
   font-size: 20px;
   font-family: 'Courier New', Courier, monospace;
+  outline: none;
 }
 
 .button:hover {

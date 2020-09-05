@@ -7,15 +7,19 @@
  * `javascript.validate.enable`: false
  * https://github.com/microsoft/vscode/issues/47299
  */
+
+
 var del = require("del");
 var gulp = require("gulp");
 var csso = require("gulp-csso");
 var scss = require("gulp-sass");
+var args = require('yargs').argv;
 var babel = require("gulp-babel");
 var concat = require("gulp-concat");
 var uglify = require("gulp-uglify");
 var terser = require('gulp-terser');
 var rename = require("gulp-rename");
+var inject = require('gulp-inject');
 var htmlmin = require("gulp-htmlmin");
 var cleanCSS = require("gulp-clean-css");
 var typescript = require('gulp-typescript');
@@ -24,14 +28,23 @@ var browserSync = require("browser-sync").create();
 
 
 /**
+ * Declare local variables
+ */
+var local = {
+  port: 3000,
+  host: "http://localhost:3000"
+};
+
+
+/**
  * Declare the source & destination paths of the file path
  * Depending on your project type, feel free to remove whichever is not required
  */
 var paths = {
   html: { src: "src/**/*.html", dest: "dist/" },
-  css: { src: "src/**/*.css", dest: "dist/css/" },
+  css: { src: "src/**/*.css", dest: "dist/css/", inject: "./dist/**/*.js" },
   scss: { src: "src/**/*.scss", dest: "dist/css/" },
-  js: { src: "src/**/*.js", dest: "dist/scripts/" },
+  js: { src: "src/**/*.js", dest: "dist/scripts/", inject: "./dist/**/*.css" },
   ts: { src: "src/**/*.ts", dest: "dist/scripts/" },
   asset: { src: "src/assets/**/*", dest: "dist/assets/" }
 };
@@ -50,11 +63,10 @@ function clean() {
  * Task to minify all HTML pages
  */
 function html() {
+  var host = (args.production === undefined) ? local.host : args.production;
   return gulp.src([paths.html.src])
-    .pipe(htmlmin({
-      collapseWhitespace: true,
-      removeComments: true
-    }))
+    .pipe(inject(gulp.src([paths.js.inject, paths.css.inject], { read: false }), { ignorePath: '/dist', addRootSlash: false, addPrefix: host, relative: false }))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(paths.html.dest));
 }
 
@@ -63,10 +75,11 @@ function html() {
  * Task to minify all CSS files
  */
 function css() {
+  var filename = (args.production === undefined) ? "css-bundle.css" : "css-bundle-" + random() + ".css";
   return gulp.src(paths.css.src)
     .pipe(csso())
     .pipe(autoprefixer())
-    .pipe(concat("css-bundle.css"))
+    .pipe(concat(filename))
     .pipe(cleanCSS())
     .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest(paths.css.dest));
@@ -77,11 +90,12 @@ function css() {
  * Task to minify all SCSS files
  */
 function sass() {
+  var filename = (args.production === undefined) ? "scss-bundle.css" : "scss-bundle-" + random() + ".css";
   return gulp.src(paths.scss.src)
     .pipe(scss().on("error", scss.logError))
     .pipe(csso())
     .pipe(autoprefixer())
-    .pipe(concat("scss-bundle.css"))
+    .pipe(concat(filename))
     .pipe(cleanCSS())
     .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest(paths.scss.dest));
@@ -92,20 +106,13 @@ function sass() {
  * Task to minify all JS files
  */
 function js() {
+  var filename = (args.production === undefined) ? "js-bundle.js" : "js-bundle-" + random() + ".js";
   return gulp.src(paths.js.src)
-    .pipe(concat("js-bundle.js"))
+    .pipe(concat(filename))
     .pipe(babel())
     .pipe(uglify())
-    .pipe(terser({
-      compress: true,
-      mangle: {
-        toplevel: true,
-        reserved: ["initJs"]
-      }
-    }))
-    .pipe(rename({
-      suffix: ".min"
-    }))
+    .pipe(terser({ compress: true, mangle: { toplevel: true, reserved: ["initJs"] } }))
+    .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest(paths.js.dest));
 }
 
@@ -124,24 +131,14 @@ function jsDev() {
  * Task to minify all TS files
  */
 function ts() {
+  var filename = (args.production === undefined) ? "ts-bundle.js" : "ts-bundle-" + random() + ".js";
   return gulp.src(paths.ts.src)
     .pipe(concat("ts-bundle.ts"))
-    .pipe(typescript({
-      noImplicitAny: true,
-      outFile: 'ts-bundle.js'
-    }))
+    .pipe(typescript({ noImplicitAny: true, outFile: filename }))
     .pipe(babel())
     .pipe(uglify())
-    .pipe(terser({
-      compress: true,
-      mangle: {
-        toplevel: true,
-        reserved: ["initTs"]
-      }
-    }))
-    .pipe(rename({
-      suffix: ".min"
-    }))
+    .pipe(terser({ compress: true, mangle: { toplevel: true, reserved: ["initTs"] } }))
+    .pipe(rename({ suffix: ".min" }))
     .pipe(gulp.dest(paths.js.dest));
 }
 
@@ -152,10 +149,7 @@ function ts() {
 function tsDev() {
   return gulp.src(paths.ts.src)
     .pipe(concat("ts-bundle.ts"))
-    .pipe(typescript({
-      noImplicitAny: true,
-      outFile: 'ts-bundle.min.js'
-    }))
+    .pipe(typescript({ noImplicitAny: true, outFile: 'ts-bundle.min.js' }))
     .pipe(gulp.dest(paths.js.dest));
 }
 
@@ -176,7 +170,8 @@ function assets() {
  */
 function watch() {
   browserSync.init({
-    server: { baseDir: "dist", index: "/index.html" }
+    server: { baseDir: "dist", index: "/index.html" },
+    port: local.port
   });
   gulp.watch(paths.js.src, jsDev);
   gulp.watch(paths.ts.src, tsDev);
@@ -189,11 +184,22 @@ function watch() {
 
 
 /**
+ * Task to generate random strings
+ */
+function random() {
+  return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+
+/**
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  * Those tasks can be called by just running `gulp taskname` from cli
  */
-var build = gulp.series(clean, gulp.parallel(html, css, sass, js, ts, assets));
-var dev = gulp.series(clean, gulp.parallel(html, css, sass, jsDev, tsDev, assets));
+var build = gulp.series(clean, gulp.parallel(css, sass, js, ts, assets), html);
+var dev = gulp.series(clean, gulp.parallel(css, sass, jsDev, tsDev, assets), html);
 
 
 /**
