@@ -1,6 +1,11 @@
-# Ultimate JS Seed
+# Ultimate Frontend Seed
 
-A simple seed project for beginner's to kickstart the basic frontend development in no time! Also, you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending time on the base architecture & become insanely productive in minutes!
+A simple seed project for the beginner's to kickstart the basic frontend development in no time! Also, you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending time on building the architecture & become insanely productive in minutes!
+
+
+# Why Ultimate Frontend Seed?
+
+So let assume you're a beginner in frontend development or you might need some data
 
 
 # What's Included?
@@ -22,12 +27,12 @@ A simple seed project for beginner's to kickstart the basic frontend development
 * [Node.JS](https://nodejs.org/en/)
 
 Don't know/have those in your system? No worries!
-Just download & install those from the above websites & you'll be good to go.
+Just download & install those from the above websites & you're good to go.
 
 
 # Getting the seed package
 
-Take clone of this [repository](https://github.com/dusk196/ultimate-js-seed/) from the above link or download as a .zip package & extract it.
+Take clone of this [repository](https://github.com/dusk196/ultimate-frontend-seed/) from the above link or download as a .zip package & extract it.
 
 
 # Directory Structure:
@@ -123,5 +128,3 @@ Deploy the contents of `dist` folder
 * Deleting a file in `assets` folder doesn't reflect in the output folder in real time
 * No support for `.LESS` format yet (WIP)
 * No polyfills
-
-
