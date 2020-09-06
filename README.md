@@ -5,13 +5,12 @@ A simple seed project for the beginner's to kickstart the basic frontend develop
 
 # Why?
 
-Using only HTML pages with CSS & Javascript can be really boring. Why?
-Because we need to save all the changes in HTML or CSS file & then we have to manually refresh the browser to check the changes; EVERTYTIME! If .SASS or .LESS is used for styling, then we have to compile it first manually & same for Typescript also. And guess what? Those are neither minified, nor bundled like other popular frontend frameworks. That's when the Gulp &  NodeJS  comes to the picture.
+Using only HTML pages with CSS & Javascript can be really boring. Why? Because we need to save all the changes in HTML or CSS file & then we have to manually refresh the browser to check the changes; EVERTYTIME! If .SASS or .LESS is used for styling, then we have to compile it first manually & same for Typescript also. And guess what? Those are neither minified, nor bundled like other popular frontend frameworks. That's when the Gulp &  NodeJS  comes to the picture.
 
 
 # So what's Included?
 
-* Single file bundle generation for:
+* Single file bundle generation for (feel free to skip whichever is not required in the developement):
   * HTML
   * CSS
   * SCSS
@@ -39,7 +38,7 @@ Take clone of this [repository](https://github.com/dusk196/ultimate-frontend-see
 
 # Directory Structure:
 
-The folder structure is pretty straight forward. The main souce code can be found in the `src` folder with different subfolders to differentiate between file types. The `assets` folder is to contain all the assets (i.e. audio, video, fonts etc.) required for the developement. The `.browserslistrc` is to denote add some browser speciafic CSS prefixes. The `gulpfile.js` is responsible for the automated build generation process. Let's look into this later part of this guide. 
+The folder structure is pretty straight forward. The main souce code can be found in the `src` folder with different subfolders to differentiate between file types. The `assets` folder is to contain all the assets (i.e. audio, video, fonts etc.) required for the developement. The `.browserslistrc` is to denote add some browser speciafic CSS prefixes. The `gulpfile.js` is responsible for the automated build generation process. Let's look into this later part of this guide. Deploy the contents of `dist` folder in the production.
 
 ```
  📦
@@ -55,6 +54,9 @@ The folder structure is pretty straight forward. The main souce code can be foun
  ┃ ┣━📂js
  ┃ ┃ ┣━📜custom-js-script1.js
  ┃ ┃ ┗━📜custom-js-script2.js
+ ┃ ┣━📂less
+ ┃ ┃ ┣━📜custom-less-styles1.less
+ ┃ ┃ ┗━📜custom-less-styles2.less
  ┃ ┣━📂scss
  ┃ ┃ ┣━📜custom-scss-styles1.scss
  ┃ ┃ ┗━📜custom-scss-styles2.scss
@@ -67,7 +69,7 @@ The folder structure is pretty straight forward. The main souce code can be foun
  ┗━📜package.json
 ```
 
-**Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the developement process in any way.
+**Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the developement process in any way. However, please maintain this format to add any new files.
 
 
 # Getting started:
@@ -87,8 +89,8 @@ Go to the root folder of the project & perform `npm install`
 To simplify the entire process, the gulp tasks has been wrapped into three NPM commands as follows:
 
 * `npm run start`
-* `npm run watch`
-* `npm run build`
+* `npm run build:dev`
+* `npm run build:prod`
 
 Also there are two launch modes available as follows:
 
@@ -98,8 +100,8 @@ Also there are two launch modes available as follows:
 Task | Command
 ---- | -------
 `npm run start` | Builds the entire application in *production mode*, launches the application in the default browser and monitors the entire source code to build & refresh the browser in real-time if changes are made
-`npm run watch` | Builds the entire application in *developement mode*, launches the application in the default browser and monitors the entire source code to build & refresh the browser in real-time if changes are made
-`npm run build` | Builds the entire application in *production mode*; which is available in the `dist` folder thereafter & ready for live deploment
+`npm run build:dev` | Builds the entire application in *developement mode*; which is available in the `dist` folder thereafter & ready for live deployment
+`npm run build:prod` | Builds the entire application in *production mode*; which is available in the `dist` folder thereafter & ready for live deployment
 
 But wherever the NPM commands are executed, it clears the output directory `dist` & builds the entire application again. Now there are some `Gulp` tasks available which will execute only a perticular set of things as follows:
 
@@ -107,12 +109,14 @@ Task | Command
 ---- | -------
 `gulp` | Since no gulp task is mentioned, by default it performs a production build of the entire application
 `gulp build` | Performs a build of the entire application in production mode
+`gulp build --production=true` | Performs a build of the entire application in production mode with named chunks
 `gulp dev` | Performs a build of the entire application in developement mode
 `gulp watch` | Looks for changes in the entire source code to build & refresh the browser in real-time
 `gulp clean` | Delete all the files & folders in the output directory `dist`
 `gulp html` | Performs a build of all the `HTML` files available; ignores if none
 `gulp css` | Performs a build of all the `CSS` files available; ignores if none
 `gulp sass` | Performs a build of all the `SCSS` files available; ignores if none
+`gulp less` | Performs a build of all the `LESS` files available; ignores if none
 `gulp js` | Performs a build of all the `JS` files available (in production mode); ignores if none
 `gulp ts` | Performs a build of all the `TS` files available (in production mode); ignores if none
 `gulp jsdev` | Performs a build of all the `JS` files available (in developement mode); ignores if none
@@ -128,5 +132,4 @@ Deploy the contents of `dist` folder
 * No source maps
 * No test cases
 * Deleting a file in `assets` folder doesn't reflect in the output folder in real time
-* No support for `.LESS` format yet (WIP)
 * No polyfills

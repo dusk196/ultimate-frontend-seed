@@ -1,0 +1,77 @@
+/**
+  * Just to give you some idea about how the bundle is generated!
+  * Also some global styles to make the demo looks good!
+  * Feel free to customise/remove as per your requirements!
+  */
+
+@background: #353d3e;
+@color: #ADC480;
+
+.paragraph {
+  margin: 50px;
+  font-size: larger;
+}
+
+.button {
+  background-color: @background;
+  border: 1px dashed salmon;
+  color: @color;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  outline: none;
+}
+
+.button:hover {
+  box-shadow: 0 4px 24px 0 rgba(255, 255, 255, 0.25), 0 0px 24px 0 rgba(255, 255, 255, .2);
+  background-color: @color;
+  color: @background;
+  border: none;
+}
+
+.button:hover .highlight {
+  font-weight: bold;
+}
+
+.button:active {
+  box-shadow: 0 4px 24px 0 rgba(255, 255, 255, 0.75), 0 0px 24px 0 rgba(255, 255, 255, .5);
+}
+
+.parent1 {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.box1 {
+  border: 1px dashed salmon;
+  padding: 30px;
+  margin: 10px;
+  border-radius: 60px;
+  word-wrap: break-word;
+}
+
+.parent2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.box2 {
+  flex: 1 1 150px;
+  margin: 5px;
+  margin-top: 100px;
+}
+
+.parent3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 50px;
+}

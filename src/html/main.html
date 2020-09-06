@@ -5,6 +5,9 @@
   <meta charset="utf-8">
   <title>Ultimate Frontend seed</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Place the base ref with respect to the root directory so that browser can find the CSS & JS files -->
+  <!-- https://www.w3schools.com/tags/tag_base.asp -->
+  <base href="./../">
   <!-- DON'T REMOVE THE BELOW TWO LINES. CSS files will be dynamically added below. -->
   <!-- inject:css -->
   <!-- endinject -->
@@ -16,11 +19,12 @@
     <h2>Feel free to customize it as per your requirements. Suggestions are always welcome!</h2>
   </header>
   <main>
-    <p>Now here's an image from the assets folder:</p>
+    <div class="paragraph">Now here's an image from the assets folder:</div>
     <img src="./../assets/image.jpg" alt="an image">
     <div class="parent3">
       <a href="./../index.html" class="button">Go to <span class="highlight">HOME</span>!</a>
     </div>
+    <div class="paragraph">Ohh bdw, in case you're wondering, <span class="highlight">LESS</span> format is used the global styling of the webpage.</div>
   </main>
   <footer>
     <h3>Happy coding!</h3>

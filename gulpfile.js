@@ -12,7 +12,8 @@
 var del = require("del");
 var gulp = require("gulp");
 var csso = require("gulp-csso");
-var scss = require("gulp-sass");
+var gsass = require("gulp-sass");
+var gless = require('gulp-less');
 var args = require('yargs').argv;
 var babel = require("gulp-babel");
 var concat = require("gulp-concat");
@@ -28,24 +29,16 @@ var browserSync = require("browser-sync").create();
 
 
 /**
- * Declare local variables
- */
-var local = {
-  port: 3000,
-  host: "http://localhost:3000"
-};
-
-
-/**
  * Declare the source & destination paths of the file path
  * Depending on your project type, feel free to remove whichever is not required
  */
 var paths = {
   html: { src: "src/**/*.html", dest: "dist/" },
-  css: { src: "src/**/*.css", dest: "dist/css/", inject: "./dist/**/*.js" },
-  scss: { src: "src/**/*.scss", dest: "dist/css/" },
-  js: { src: "src/**/*.js", dest: "dist/scripts/", inject: "./dist/**/*.css" },
-  ts: { src: "src/**/*.ts", dest: "dist/scripts/" },
+  css: { src: "src/**/*.css", dest: "dist/css/", inject: "./dist/**/*.css" },
+  scss: { src: "src/**/*.scss", dest: "dist/css/", inject: "./dist/**/*.css" },
+  less: { src: "src/**/*.less", dest: "dist/css/", inject: "./dist/**/*.css" },
+  js: { src: "src/**/*.js", dest: "dist/scripts/", inject: "./dist/**/*.js" },
+  ts: { src: "src/**/*.ts", dest: "dist/scripts/", inject: "./dist/**/*.js" },
   asset: { src: "src/assets/**/*", dest: "dist/assets/" }
 };
 
@@ -63,9 +56,9 @@ function clean() {
  * Task to minify all HTML pages
  */
 function html() {
-  var host = (args.production === undefined) ? local.host : args.production;
+  var options = { ignorePath: '/dist', addRootSlash: false, relative: false };
   return gulp.src([paths.html.src])
-    .pipe(inject(gulp.src([paths.js.inject, paths.css.inject], { read: false }), { ignorePath: '/dist', addRootSlash: false, addPrefix: host, relative: false }))
+    .pipe(inject(gulp.src([paths.js.inject, paths.css.inject], { read: false }), options))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(paths.html.dest));
 }
@@ -92,7 +85,22 @@ function css() {
 function sass() {
   var filename = (args.production === undefined) ? "scss-bundle.css" : "scss-bundle-" + random() + ".css";
   return gulp.src(paths.scss.src)
-    .pipe(scss().on("error", scss.logError))
+    .pipe(gsass().on("error", gsass.logError))
+    .pipe(csso())
+    .pipe(autoprefixer())
+    .pipe(concat(filename))
+    .pipe(cleanCSS())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(gulp.dest(paths.scss.dest));
+}
+
+/**
+ * Task to minify all LESS files
+ */
+function less() {
+  var filename = (args.production === undefined) ? "less-bundle.css" : "less-bundle-" + random() + ".css";
+  return gulp.src(paths.less.src)
+    .pipe(gless())
     .pipe(csso())
     .pipe(autoprefixer())
     .pipe(concat(filename))
@@ -170,13 +178,13 @@ function assets() {
  */
 function watch() {
   browserSync.init({
-    server: { baseDir: "dist", index: "/index.html" },
-    port: local.port
+    server: { baseDir: "dist", index: "/index.html" }
   });
   gulp.watch(paths.js.src, jsDev);
   gulp.watch(paths.ts.src, tsDev);
   gulp.watch(paths.css.src, css);
   gulp.watch(paths.scss.src, sass);
+  gulp.watch(paths.less.src, less);
   gulp.watch(paths.html.src, html);
   gulp.watch(paths.asset.src, assets);
   gulp.watch("dist/**/*").on("change", browserSync.reload);
@@ -185,6 +193,7 @@ function watch() {
 
 /**
  * Task to generate random strings
+ * https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
  */
 function random() {
   return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -198,8 +207,8 @@ function random() {
  * Specify if tasks run in series or parallel using `gulp.series` and `gulp.parallel`
  * Those tasks can be called by just running `gulp taskname` from cli
  */
-var build = gulp.series(clean, gulp.parallel(css, sass, js, ts, assets), html);
-var dev = gulp.series(clean, gulp.parallel(css, sass, jsDev, tsDev, assets), html);
+var build = gulp.series(clean, gulp.parallel(css, sass, less, js, ts, assets), html);
+var dev = gulp.series(clean, gulp.parallel(css, sass, less, jsDev, tsDev, assets), html);
 
 
 /**
@@ -209,6 +218,7 @@ exports.clean = clean;
 exports.html = html;
 exports.css = css;
 exports.sass = sass;
+exports.less = less;
 exports.js = js;
 exports.jsdev = jsDev;
 exports.tsdev = tsDev;
