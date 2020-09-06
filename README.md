@@ -5,12 +5,12 @@ A simple seed project for the beginner's to kickstart the basic frontend develop
 
 # Why?
 
-Using only HTML pages with CSS & Javascript can be really boring. Why? Because we need to save all the changes in HTML or CSS file & then we have to manually refresh the browser to check the changes; EVERTYTIME! If .SASS or .LESS is used for styling, then we have to compile it first manually & same for Typescript also. And guess what? Those are neither minified, nor bundled like other popular frontend frameworks. That's when the Gulp &  NodeJS  comes to the picture.
+Using only HTML pages with CSS & Javascript can be really boring. Why? Because we need to save all the changes in HTML or CSS files & then we have to manually refresh the browser to check the changes; EVERTY TIME! If .SASS or .LESS is used for styling, then we have to compile it first manually & same for Typescript also. And guess what? Those are neither minified, nor bundled like other popular frontend frameworks. That's when the Gulp &  NodeJS  comes to the picture.
 
 
-# So what's Included?
+# So what's included?
 
-* Single file bundle generation for (feel free to skip whichever is not required in the developement):
+* Single file bundle generation for (feel free to skip whichever is not required in the development):
   * HTML
   * CSS
   * SCSS
@@ -19,7 +19,7 @@ Using only HTML pages with CSS & Javascript can be really boring. Why? Because 
   * TS
 * Minifying, mangling & optimising the bundles
 * Uglifying the JS/TS files
-* A small webserver with synchronization for live developement
+* A small web server with synchronization for live development
 
 
 # Prerequisite:
@@ -33,12 +33,12 @@ Just download & install those from the above websites & you're good to go.
 
 # Getting the seed package:
 
-Take clone of this [repository](https://github.com/dusk196/ultimate-frontend-seed/) from the above link or download as a .zip package & extract it.
+Take a clone of this [repository](https://github.com/dusk196/ultimate-frontend-seed/) from the above link or download as a .zip package & extract it.
 
 
-# Directory Structure:
+# Directory structure:
 
-The folder structure is pretty straight forward. The main souce code can be found in the `src` folder with different subfolders to differentiate between file types. The `assets` folder is to contain all the assets (i.e. audio, video, fonts etc.) required for the developement. The `.browserslistrc` is to denote add some browser speciafic CSS prefixes. The `gulpfile.js` is responsible for the automated build generation process. Let's look into this later part of this guide. Deploy the contents of `dist` folder in the production.
+The folder structure is pretty straight forward. The main source code can be found in the `src` folder with different subfolders to differentiate between file types. The `assets` folder is to contain all the assets (i.e. audio, video, fonts etc.) required for the development. The `.browserslistrc` is to denote add some browser specific CSS prefixes. The `gulpfile.js` is responsible for the automated build generation process. Let's look into this later part of this guide. Deploy the contents of the `dist` folder in the production.
 
 ```
  📦
@@ -69,7 +69,7 @@ The folder structure is pretty straight forward. The main souce code can be foun
  ┗━📜package.json
 ```
 
-**Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the developement process in any way. However, please maintain this format to add any new files.
+**Note**: If you don't need a specific type of format, you can delete the subfolder freely. It will not affect the development process in any way. However, please maintain this format to add any new files.
 
 
 # Getting started:
@@ -94,23 +94,23 @@ To simplify the entire process, the gulp tasks has been wrapped into three NPM c
 
 Also there are two launch modes available as follows:
 
-* **Developement mode**: Minify, mangling & optimization for the JS are not done for easy debugging using `debugger;` or any browser console. However, a single JS file is still generated.
+* **Development mode**: Minify, mangling & optimization for the JS are not done for easy debugging using `debugger;` or any browser console. However, a single JS file is still generated.
 * **Production mode**: Minify, mangling & optimization are done for the JS.
 
 Task | Command
 ---- | -------
 `npm run start` | Builds the entire application in *production mode*, launches the application in the default browser and monitors the entire source code to build & refresh the browser in real-time if changes are made
-`npm run build:dev` | Builds the entire application in *developement mode*; which is available in the `dist` folder thereafter & ready for live deployment
+`npm run build:dev` | Builds the entire application in *development mode*; which is available in the `dist` folder thereafter & ready for live deployment
 `npm run build:prod` | Builds the entire application in *production mode*; which is available in the `dist` folder thereafter & ready for live deployment
 
-But wherever the NPM commands are executed, it clears the output directory `dist` & builds the entire application again. Now there are some `Gulp` tasks available which will execute only a perticular set of things as follows:
+But wherever the NPM commands are executed, it clears the output directory `dist` & builds the entire application again. Now there are some `Gulp` tasks available which will execute only a particular set of things as follows:
 
 Task | Command
 ---- | -------
 `gulp` | Since no gulp task is mentioned, by default it performs a production build of the entire application
 `gulp build` | Performs a build of the entire application in production mode
 `gulp build --production=true` | Performs a build of the entire application in production mode with named chunks
-`gulp dev` | Performs a build of the entire application in developement mode
+`gulp dev` | Performs a build of the entire application in development mode
 `gulp watch` | Looks for changes in the entire source code to build & refresh the browser in real-time
 `gulp clean` | Delete all the files & folders in the output directory `dist`
 `gulp html` | Performs a build of all the `HTML` files available; ignores if none
@@ -119,12 +119,12 @@ Task | Command
 `gulp less` | Performs a build of all the `LESS` files available; ignores if none
 `gulp js` | Performs a build of all the `JS` files available (in production mode); ignores if none
 `gulp ts` | Performs a build of all the `TS` files available (in production mode); ignores if none
-`gulp jsdev` | Performs a build of all the `JS` files available (in developement mode); ignores if none
-`gulp tsdev` | Performs a build of all the `TS` files available (in developement mode); ignores if none
+`gulp jsdev` | Performs a build of all the `JS` files available (in development mode); ignores if none
+`gulp tsdev` | Performs a build of all the `TS` files available (in development mode); ignores if none
 
 ## Deployment:
 
-Deploy the contents of `dist` folder
+Deploy the contents of the `dist` folder
 
 
 # Limitation:
