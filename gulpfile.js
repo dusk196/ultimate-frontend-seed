@@ -193,12 +193,10 @@ function watch() {
 
 /**
  * Task to generate random strings
- * https://stackoverflow.com/questions/105034/how-to-create-guid-uuid
  */
 function random() {
-  return 'xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
+  return 'xxxxxxxxxxxx'.replace(/[x]/g, function () {
+    return (Math.random() * 16 | 0).toString(16);
   });
 }
 
