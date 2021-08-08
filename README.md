@@ -1,5 +1,15 @@
 # Ultimate Frontend Seed
 
+[![Gulp JS](https://img.shields.io/badge/Gulp-CF4647?style=for-the-badge&logo=gulp&logoColor=white)](https://gulpjs.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://www.w3.org/html/)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3schools.com/css/)
+[![SASS](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)](https://sass-lang.com/)
+
+![Language](https://img.shields.io/github/languages/top/dusk196/ultimate-frontend-seed?style=for-the-badge)
+![Size](https://img.shields.io/github/languages/code-size/dusk196/ultimate-frontend-seed?style=for-the-badge)
+
 A simple seed project for the beginner's to kickstart the basic frontend development in no time! Also, you can play around with the `gulpfile.js` file included and understand how it works or how to configure it as per your requirements. So, stop spending time on building the architecture & become insanely productive in minutes!
 
 
@@ -24,8 +34,8 @@ Using only HTML pages with CSS & Javascript can be really boring. Why? Because 
 
 # Prerequisite:
 
-* [Git](https://git-scm.com/) (optional; if you download this package as .zip)
-* [Node.JS](https://nodejs.org/en/)
+* [Git](https://git-scm.com/) (optional; you can also download this package as .zip)
+* [Node JS](https://nodejs.org/en/)
 
 Don't know/have those in your system? No worries!
 Just download & install those from the above websites & you're good to go.
@@ -124,7 +134,7 @@ Task | Command
 
 ## Deployment:
 
-Deploy the contents of the `dist` folder
+Deploy the contents of the `dist` folder in any web server.
 
 
 # Limitation:
